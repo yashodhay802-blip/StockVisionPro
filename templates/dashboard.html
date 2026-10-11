@@ -1,0 +1,852 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard | StockVision Pro
+{% endblock %}
+
+
+{% block content %}
+
+<div class="dashboard-page">
+
+
+    <!-- ================= HERO HEADER ================= -->
+
+    <section class="dashboard-hero">
+
+        <div class="dashboard-hero-content">
+
+            <div class="page-eyebrow">
+
+                <span class="pulse-dot"></span>
+
+                LIVE MARKET INTELLIGENCE
+
+            </div>
+
+
+            <h1>
+
+                Market
+                <span>Dashboard</span>
+
+            </h1>
+
+
+            <p>
+
+                Monitor real-time market performance, discover
+                top movers and track leading global companies
+                from one intelligent workspace.
+
+            </p>
+
+
+        </div>
+
+
+        <div class="market-status-card">
+
+            <div class="market-status-top">
+
+                <span class="status-indicator">
+
+                    <span></span>
+
+                    LIVE
+
+                </span>
+
+
+                <small>
+                    MARKET DATA
+                </small>
+
+            </div>
+
+
+            <h3>
+                Global Market
+            </h3>
+
+
+            <p>
+                Real-time price monitoring
+            </p>
+
+
+            <div class="market-status-line"></div>
+
+
+            <div class="market-mini-stats">
+
+                <div>
+
+                    <small>
+                        TRACKING
+                    </small>
+
+                    <strong>
+                        33+
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        STATUS
+                    </small>
+
+                    <strong class="live-text">
+                        LIVE
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= MARKET SUMMARY ================= -->
+
+    <section class="market-summary-grid">
+
+
+        <!-- TOTAL STOCKS -->
+
+        <div class="summary-card">
+
+            <div class="summary-card-top">
+
+                <div class="summary-icon purple-icon">
+                    ◈
+                </div>
+
+                <span>
+                    MARKET
+                </span>
+
+            </div>
+
+
+            <small>
+                TRACKED STOCKS
+            </small>
+
+
+            <h2 id="totalStocks">
+                --
+            </h2>
+
+
+            <p>
+                Companies actively monitored
+            </p>
+
+        </div>
+
+
+
+        <!-- TOP GAINER -->
+
+        <div class="summary-card gain-card">
+
+            <div class="summary-card-top">
+
+                <div class="summary-icon green-icon">
+                    ↗
+                </div>
+
+                <span class="positive-label">
+                    TOP PERFORMER
+                </span>
+
+            </div>
+
+
+            <small>
+                TOP GAINER
+            </small>
+
+
+            <h2 id="topGainer">
+                Loading...
+            </h2>
+
+
+            <p id="topGainerName">
+                Calculating market performance
+            </p>
+
+        </div>
+
+
+
+        <!-- TOP LOSER -->
+
+        <div class="summary-card loss-card">
+
+            <div class="summary-card-top">
+
+                <div class="summary-icon red-icon">
+                    ↘
+                </div>
+
+                <span class="negative-label">
+                    MARKET DROP
+                </span>
+
+            </div>
+
+
+            <small>
+                TOP LOSER
+            </small>
+
+
+            <h2 id="topLoser">
+                Loading...
+            </h2>
+
+
+            <p id="topLoserName">
+                Calculating market performance
+            </p>
+
+        </div>
+
+
+
+        <!-- LIVE STATUS -->
+
+        <div class="summary-card">
+
+            <div class="summary-card-top">
+
+                <div class="summary-icon blue-icon">
+                    ◉
+                </div>
+
+                <span>
+                    SYSTEM
+                </span>
+
+            </div>
+
+
+            <small>
+                DATA STATUS
+            </small>
+
+
+            <h2 class="system-live">
+
+                <span class="system-dot"></span>
+
+                LIVE
+
+            </h2>
+
+
+            <p>
+                Connected to market feed
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ================= MARKET TABLE ================= -->
+
+    <section class="market-table-section">
+
+
+        <div class="market-table-card">
+
+
+            <!-- TABLE HEADER -->
+
+            <div class="market-table-header">
+
+
+                <div>
+
+                    <div class="table-eyebrow">
+
+                        <span class="pulse-dot"></span>
+
+                        REAL-TIME MARKET
+
+                    </div>
+
+
+                    <h2>
+
+                        Global
+                        <span>Stocks</span>
+
+                    </h2>
+
+
+                    <p>
+
+                        Live market prices and daily
+                        performance of leading companies.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="table-header-actions">
+
+
+                    <div class="market-live-badge">
+
+                        <span></span>
+
+                        LIVE DATA
+
+                    </div>
+
+
+                    <div class="stock-count-badge">
+
+                        <strong id="stockCount">
+                            --
+                        </strong>
+
+                        STOCKS
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- TABLE -->
+
+            <div class="table-scroll">
+
+
+                <table class="professional-stock-table">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                COMPANY
+                            </th>
+
+                            <th>
+                                PRICE
+                            </th>
+
+                            <th>
+                                CHANGE
+                            </th>
+
+                            <th>
+                                DAY HIGH
+                            </th>
+
+                            <th>
+                                DAY LOW
+                            </th>
+
+                            <th>
+                                VOLUME
+                            </th>
+
+                            <th class="watch-column">
+                                WATCH
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+
+                    <tbody id="stockTable">
+
+                        <tr>
+
+                            <td
+                                colspan="7"
+                                class="table-loading"
+                            >
+
+                                <div class="table-loader"></div>
+
+                                <span>
+                                    Loading live market data...
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+
+            <!-- TABLE FOOTER -->
+
+            <div class="market-table-footer">
+
+
+                <span>
+
+                    Market data updates automatically
+                    when the dashboard is refreshed.
+
+                </span>
+
+
+                <a href="/charts">
+
+                    Explore Charts
+                    →
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</div>
+
+
+
+<script>
+
+
+async function loadStocks() {
+
+
+    try {
+
+
+        const response = await fetch(
+            "/api/stocks"
+        )
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load market data"
+            )
+
+        }
+
+
+        const result =
+            await response.json()
+
+
+        const stocks =
+            result.stocks || []
+
+
+        const table =
+            document.getElementById(
+                "stockTable"
+            )
+
+
+        const totalStocks =
+            document.getElementById(
+                "totalStocks"
+            )
+
+
+        const stockCount =
+            document.getElementById(
+                "stockCount"
+            )
+
+
+        table.innerHTML = ""
+
+
+        totalStocks.textContent =
+            stocks.length
+
+
+        stockCount.textContent =
+            stocks.length
+
+
+
+        if (stocks.length === 0) {
+
+
+            table.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="7"
+                        class="table-empty"
+                    >
+
+                        No live market data available.
+
+                    </td>
+
+                </tr>
+
+            `
+
+
+            return
+
+        }
+
+
+
+        stocks.forEach(stock => {
+
+
+            const row =
+                document.createElement(
+                    "tr"
+                )
+
+
+            const changeClass =
+                stock.change_percent >= 0
+
+                ? "positive"
+
+                : "negative"
+
+
+            const changeIcon =
+                stock.change_percent >= 0
+
+                ? "▲"
+
+                : "▼"
+
+
+            const formattedPrice =
+                Number(
+                    stock.price
+                ).toFixed(2)
+
+
+            const formattedHigh =
+                Number(
+                    stock.high
+                ).toFixed(2)
+
+
+            const formattedLow =
+                Number(
+                    stock.low
+                ).toFixed(2)
+
+
+            const formattedVolume =
+                Number(
+                    stock.volume
+                ).toLocaleString()
+
+
+            row.innerHTML = `
+
+
+                <td>
+
+
+                    <div class="stock-company">
+
+
+                        <div class="stock-logo-wrap">
+
+
+                            <img
+
+                                src="https://assets.parqet.com/logos/symbol/${stock.symbol}?format=png"
+
+                                class="stock-logo"
+
+                                alt="${stock.symbol}"
+
+                                onerror="this.style.display='none'"
+
+                            >
+
+
+                            <div
+                                class="stock-logo-fallback"
+                            >
+
+                                ${stock.symbol.charAt(0)}
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="stock-details">
+
+
+                            <strong>
+
+                                ${stock.symbol}
+
+                            </strong>
+
+
+                            <small>
+
+                                ${stock.name}
+
+                            </small>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </td>
+
+
+
+                <td>
+
+                    <strong class="stock-price">
+
+                        $${formattedPrice}
+
+                    </strong>
+
+                </td>
+
+
+
+                <td>
+
+
+                    <div
+                        class="change-badge ${changeClass}"
+                    >
+
+
+                        <span>
+
+                            ${changeIcon}
+
+                        </span>
+
+
+                        ${stock.change_percent >= 0 ? "+" : ""}${stock.change_percent}%
+
+
+                    </div>
+
+
+                </td>
+
+
+
+                <td>
+
+                    $${formattedHigh}
+
+                </td>
+
+
+
+                <td>
+
+                    $${formattedLow}
+
+                </td>
+
+
+
+                <td class="volume-cell">
+
+                    ${formattedVolume}
+
+                </td>
+
+
+
+                <td
+                    class="watch-column"
+                >
+
+
+                    <a
+
+                        class="watch-btn"
+
+                        href="/watchlist/add/${stock.symbol}"
+
+                        title="Add ${stock.symbol} to Watchlist"
+
+                    >
+
+                        ☆
+
+                    </a>
+
+
+                </td>
+
+
+            `
+
+
+            table.appendChild(
+                row
+            )
+
+
+        })
+
+
+
+        // ================= TOP GAINER =================
+
+
+        if (
+            result.top_gainer
+        ) {
+
+
+            const gainer =
+                result.top_gainer
+
+
+            document.getElementById(
+                "topGainer"
+            ).textContent =
+
+                `${gainer.symbol} +${gainer.change_percent}%`
+
+
+            document.getElementById(
+                "topGainerName"
+            ).textContent =
+
+                gainer.name
+
+
+        }
+
+
+
+        // ================= TOP LOSER =================
+
+
+        if (
+            result.top_loser
+        ) {
+
+
+            const loser =
+                result.top_loser
+
+
+            document.getElementById(
+                "topLoser"
+            ).textContent =
+
+                `${loser.symbol} ${loser.change_percent}%`
+
+
+            document.getElementById(
+                "topLoserName"
+            ).textContent =
+
+                loser.name
+
+
+        }
+
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "Dashboard Error:",
+            error
+        )
+
+
+        document.getElementById(
+            "stockTable"
+        ).innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="7"
+                    class="table-empty"
+                >
+
+                    Unable to load market data.
+                    Please refresh the page.
+
+                </td>
+
+            </tr>
+
+        `
+
+
+    }
+
+
+}
+
+
+
+loadStocks()
+
+
+</script>
+
+
+{% endblock %}

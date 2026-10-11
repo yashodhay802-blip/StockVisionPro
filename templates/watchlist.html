@@ -1,0 +1,516 @@
+{% extends "base.html" %}
+
+{% block title %}
+Watchlist | StockVision Pro
+{% endblock %}
+
+{% block content %}
+
+<div class="sv-watchlist-page">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="sv-watchlist-hero">
+
+        <div class="sv-watchlist-intro">
+
+            <div class="sv-watchlist-kicker">
+                <span></span>
+                STOCKVISION PRO / WATCHLIST
+            </div>
+
+            <h1>
+                Market <strong>Watchlist</strong>
+            </h1>
+
+            <p>
+                Track the stocks you care about and monitor
+                price movement from one focused market view.
+            </p>
+
+        </div>
+
+
+        <div class="sv-watchlist-overview">
+
+            <div class="sv-watchlist-overview-top">
+
+                <div>
+                    <span>WATCHLIST STATUS</span>
+
+                    <strong>
+                        <i class="fa-solid fa-eye"></i>
+                        ACTIVE
+                    </strong>
+                </div>
+
+                <div class="sv-watchlist-live">
+                    <span></span>
+                    LIVE
+                </div>
+
+            </div>
+
+
+            <div class="sv-watchlist-overview-bottom">
+
+                <div>
+
+                    <small>
+                        TRACKED STOCKS
+                    </small>
+
+                    <strong>
+                        {{ watchlist|length }}
+                    </strong>
+
+                </div>
+
+
+                <div class="sv-watchlist-overview-icon">
+
+                    <i class="fa-solid fa-layer-group"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    {% if watchlist %}
+
+    <!-- =========================
+         MAIN WATCHLIST
+    ========================== -->
+
+    <section class="sv-watchlist-main">
+
+
+        <div class="sv-watchlist-panel">
+
+            <!-- PANEL HEADER -->
+
+            <div class="sv-watchlist-panel-head">
+
+                <div>
+
+                    <span>
+                        MARKET TRACKER
+                    </span>
+
+                    <h2>
+                        Your <strong>Stocks</strong>
+                    </h2>
+
+                </div>
+
+
+                <div class="sv-watchlist-count">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    {{ watchlist|length }}
+                    Assets
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="sv-watchlist-table-wrap">
+
+                <table class="sv-watchlist-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                ASSET
+                            </th>
+
+                            <th>
+                                COMPANY
+                            </th>
+
+                            <th>
+                                PRICE
+                            </th>
+
+                            <th>
+                                DAILY CHANGE
+                            </th>
+
+                            <th>
+                                STATUS
+                            </th>
+
+                            <th>
+                                ACTION
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for stock in watchlist %}
+
+                        <tr>
+
+                            <!-- ASSET -->
+
+                            <td>
+
+                                <div class="sv-watch-asset">
+
+                                    <div class="sv-watch-asset-icon">
+
+                                        <i class="fa-solid fa-chart-simple"></i>
+
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            {{ stock.symbol }}
+                                        </strong>
+
+                                        <small>
+                                            EQUITY
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <!-- COMPANY -->
+
+                            <td>
+
+                                <div class="sv-watch-company">
+
+                                    {{ stock.name }}
+
+                                </div>
+
+                            </td>
+
+
+                            <!-- PRICE -->
+
+                            <td>
+
+                                <div class="sv-watch-price">
+
+                                    ${{ stock.price }}
+
+                                </div>
+
+                            </td>
+
+
+                            <!-- CHANGE -->
+
+                            <td>
+
+                                {% if stock.change_percent >= 0 %}
+
+                                <div class="sv-watch-change sv-watch-positive">
+
+                                    <i class="fa-solid fa-arrow-trend-up"></i>
+
+                                    <strong>
+                                        +{{ stock.change_percent }}%
+                                    </strong>
+
+                                </div>
+
+                                {% else %}
+
+                                <div class="sv-watch-change sv-watch-negative">
+
+                                    <i class="fa-solid fa-arrow-trend-down"></i>
+
+                                    <strong>
+                                        {{ stock.change_percent }}%
+                                    </strong>
+
+                                </div>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <!-- STATUS -->
+
+                            <td>
+
+                                {% if stock.change_percent >= 0 %}
+
+                                <span class="sv-market-status sv-status-up">
+
+                                    <span></span>
+                                    GAINING
+
+                                </span>
+
+                                {% else %}
+
+                                <span class="sv-market-status sv-status-down">
+
+                                    <span></span>
+                                    DECLINING
+
+                                </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <!-- ACTION -->
+
+                            <td>
+
+                                <a
+                                    href="/watchlist/remove/{{ stock.symbol }}"
+                                    class="sv-watch-remove"
+                                    onclick="return confirm('Remove {{ stock.symbol }} from your watchlist?');"
+                                >
+
+                                    <i class="fa-solid fa-xmark"></i>
+
+                                    Remove
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             SIDE PANEL
+        ========================== -->
+
+        <aside class="sv-watchlist-side">
+
+
+            <div class="sv-watch-side-head">
+
+                <span>
+                    QUICK ACTIONS
+                </span>
+
+                <h2>
+                    Manage <strong>Watchlist</strong>
+                </h2>
+
+            </div>
+
+
+            <div class="sv-watch-side-action">
+
+                <div class="sv-watch-side-icon">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Explore Markets
+                    </strong>
+
+                    <p>
+                        Find stocks and add them
+                        to your watchlist.
+                    </p>
+
+                </div>
+
+                <a href="/dashboard">
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+
+            <div class="sv-watch-side-action">
+
+                <div class="sv-watch-side-icon">
+
+                    <i class="fa-solid fa-chart-column"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Analyze Charts
+                    </strong>
+
+                    <p>
+                        Study price action and
+                        market trends.
+                    </p>
+
+                </div>
+
+                <a href="/charts">
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+
+            <div class="sv-watch-side-note">
+
+                <div class="sv-watch-note-icon">
+
+                    <i class="fa-solid fa-lightbulb"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        MARKET NOTE
+                    </span>
+
+                    <p>
+                        Use your watchlist to keep
+                        important stocks within reach
+                        before making a paper trade.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </aside>
+
+    </section>
+
+
+    <!-- =========================
+         BOTTOM CTA
+    ========================== -->
+
+    <section class="sv-watchlist-bottom">
+
+        <div>
+
+            <span>
+                STOCKVISION PRO / MARKET INTELLIGENCE
+            </span>
+
+            <h2>
+                Watch the market.
+                <strong>Spot the move.</strong>
+            </h2>
+
+        </div>
+
+
+        <a href="/charts">
+
+            Open Market Charts
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </section>
+
+
+    {% else %}
+
+    <!-- =========================
+         EMPTY STATE
+    ========================== -->
+
+    <section class="sv-watchlist-empty">
+
+        <div class="sv-watch-empty-icon">
+
+            <i class="fa-regular fa-star"></i>
+
+        </div>
+
+        <span>
+            WATCHLIST / EMPTY
+        </span>
+
+        <h2>
+            Build your
+            <strong>market watchlist.</strong>
+        </h2>
+
+        <p>
+            Add stocks from the Dashboard and keep
+            your favourite market opportunities in one place.
+        </p>
+
+        <a
+            href="/dashboard"
+            class="sv-watch-primary-btn"
+        >
+
+            <i class="fa-solid fa-plus"></i>
+
+            Explore Stocks
+
+        </a>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- FOOT NOTE -->
+
+    <div class="sv-watchlist-note">
+
+        <i class="fa-solid fa-circle-info"></i>
+
+        <span>
+            Watchlist data is provided for market monitoring
+            and paper-trading purposes.
+        </span>
+
+    </div>
+
+</div>
+
+{% endblock %}

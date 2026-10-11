@@ -1,0 +1,920 @@
+/* ==========================================================
+   STOCKVISION PRO - NEWS PAGE
+   PREMIUM MARKET VISUAL
+   NEWS PAGE ONLY
+========================================================== */
+
+
+/* ----------------------------------------------------------
+   NEWS PAGE BASE
+---------------------------------------------------------- */
+
+.sv-news-page {
+    position: relative;
+    min-height: 100vh;
+    padding: 30px 0 60px;
+    overflow: hidden;
+}
+
+
+/* ----------------------------------------------------------
+   FEATURED NEWS VISUAL
+---------------------------------------------------------- */
+
+.sv-news-page .sv-featured-visual {
+    position: relative;
+    min-height: 420px;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 24px;
+    border: 1px solid rgba(168, 85, 247, 0.25);
+
+    background:
+        radial-gradient(
+            circle at 75% 35%,
+            rgba(168, 85, 247, 0.20),
+            transparent 38%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(99, 102, 241, 0.13),
+            transparent 40%
+        ),
+        linear-gradient(
+            145deg,
+            #09090f 0%,
+            #11101c 50%,
+            #08080d 100%
+        );
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.45),
+        inset 0 0 70px rgba(139, 92, 246, 0.05);
+}
+
+
+/* ----------------------------------------------------------
+   BACKGROUND GRID
+---------------------------------------------------------- */
+
+.sv-news-page .sv-featured-visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.035) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+    mask-image: linear-gradient(
+        to bottom,
+        rgba(0,0,0,1),
+        rgba(0,0,0,0.25)
+    );
+
+    pointer-events: none;
+}
+
+
+/* ----------------------------------------------------------
+   GLOW ORBS
+---------------------------------------------------------- */
+
+.sv-news-page .sv-featured-visual::after {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    right: -100px;
+    top: -100px;
+
+    background: rgba(168, 85, 247, 0.16);
+    filter: blur(80px);
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+/* ----------------------------------------------------------
+   CHART AREA
+---------------------------------------------------------- */
+
+.sv-news-page .sv-market-chart {
+    position: absolute;
+    left: 30px;
+    right: 30px;
+    bottom: 38px;
+    height: 215px;
+
+    z-index: 2;
+}
+
+
+/* ----------------------------------------------------------
+   CHART SVG
+---------------------------------------------------------- */
+
+.sv-news-page .sv-market-chart svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+
+/* ----------------------------------------------------------
+   CHART GRID LINES
+---------------------------------------------------------- */
+
+.sv-news-page .sv-chart-grid line {
+    stroke: rgba(255,255,255,0.07);
+    stroke-width: 1;
+}
+
+
+/* ----------------------------------------------------------
+   MAIN MARKET LINE
+---------------------------------------------------------- */
+
+.sv-news-page .sv-chart-line {
+    fill: none;
+
+    stroke: #a855f7;
+    stroke-width: 4;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    filter:
+        drop-shadow(0 0 5px rgba(168,85,247,0.8))
+        drop-shadow(0 0 14px rgba(168,85,247,0.35));
+}
+
+
+/* ----------------------------------------------------------
+   SECONDARY MARKET LINE
+---------------------------------------------------------- */
+
+.sv-news-page .sv-chart-line-secondary {
+    fill: none;
+
+    stroke: rgba(129,140,248,0.75);
+    stroke-width: 2.5;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    filter:
+        drop-shadow(0 0 6px rgba(129,140,248,0.45));
+}
+
+
+/* ----------------------------------------------------------
+   CHART AREA FILL
+---------------------------------------------------------- */
+
+.sv-news-page .sv-chart-area {
+    fill: url(#svChartGradient);
+    opacity: 0.45;
+}
+
+
+/* ----------------------------------------------------------
+   CHART POINTS
+---------------------------------------------------------- */
+
+.sv-news-page .sv-chart-point {
+    fill: #ffffff;
+    stroke: #a855f7;
+    stroke-width: 3;
+
+    filter:
+        drop-shadow(0 0 5px rgba(168,85,247,0.9));
+}
+
+
+/* ----------------------------------------------------------
+   CANDLESTICK STYLE BARS
+---------------------------------------------------------- */
+
+.sv-news-page .sv-candle {
+    position: absolute;
+    bottom: 35px;
+    width: 7px;
+    border-radius: 3px;
+    opacity: 0.75;
+
+    background: linear-gradient(
+        to top,
+        rgba(168,85,247,0.18),
+        rgba(168,85,247,0.65)
+    );
+
+    box-shadow:
+        0 0 10px rgba(168,85,247,0.25);
+}
+
+
+/* ----------------------------------------------------------
+   VOLUME BARS
+---------------------------------------------------------- */
+
+.sv-news-page .sv-volume-bars {
+    position: absolute;
+    left: 30px;
+    right: 30px;
+    bottom: 28px;
+
+    height: 65px;
+
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.sv-news-page .sv-volume-bars span {
+    flex: 1;
+    min-width: 4px;
+
+    border-radius: 4px 4px 0 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(168,85,247,0.15),
+            rgba(168,85,247,0.55)
+        );
+}
+
+
+/* ----------------------------------------------------------
+   CHART HEADER
+---------------------------------------------------------- */
+
+.sv-news-page .sv-chart-header {
+    position: absolute;
+    top: 28px;
+    left: 30px;
+    right: 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    z-index: 5;
+}
+
+
+/* ----------------------------------------------------------
+   MARKET TITLE
+---------------------------------------------------------- */
+
+.sv-news-page .sv-chart-title {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sv-news-page .sv-chart-title small {
+    color: rgba(255,255,255,0.48);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.sv-news-page .sv-chart-title strong {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
+/* ----------------------------------------------------------
+   MARKET PRICE
+---------------------------------------------------------- */
+
+.sv-news-page .sv-market-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sv-news-page .sv-market-price strong {
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.sv-news-page .sv-market-price span {
+    padding: 6px 10px;
+    border-radius: 8px;
+
+    background: rgba(34,197,94,0.12);
+    border: 1px solid rgba(34,197,94,0.22);
+
+    color: #4ade80;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* ----------------------------------------------------------
+   LIVE BADGE
+---------------------------------------------------------- */
+
+.sv-news-page .sv-live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 7px 11px;
+
+    border-radius: 999px;
+
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.20);
+
+    color: #86efac;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.sv-news-page .sv-live-badge::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+    background: #4ade80;
+
+    box-shadow: 0 0 10px rgba(74,222,128,0.9);
+
+    animation: svLivePulse 1.7s infinite;
+}
+
+@keyframes svLivePulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.45;
+        transform: scale(0.75);
+    }
+}
+
+
+/* ----------------------------------------------------------
+   FLOATING MARKET CARDS
+---------------------------------------------------------- */
+
+.sv-news-page .sv-market-card {
+    position: absolute;
+
+    z-index: 6;
+
+    min-width: 145px;
+    padding: 13px 15px;
+
+    border-radius: 14px;
+
+    background: rgba(15,15,24,0.78);
+    border: 1px solid rgba(255,255,255,0.10);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.35),
+        inset 0 1px rgba(255,255,255,0.05);
+
+    animation: svFloatCard 5s ease-in-out infinite;
+}
+
+.sv-news-page .sv-market-card:nth-child(2) {
+    right: 32px;
+    top: 105px;
+}
+
+.sv-news-page .sv-market-card:nth-child(3) {
+    left: 32px;
+    top: 135px;
+    animation-delay: -2s;
+}
+
+@keyframes svFloatCard {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+.sv-news-page .sv-market-card-label {
+    display: block;
+
+    color: rgba(255,255,255,0.45);
+
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    margin-bottom: 5px;
+}
+
+.sv-news-page .sv-market-card-value {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.sv-news-page .sv-market-card-value strong {
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.sv-news-page .sv-market-card-value span {
+    color: #4ade80;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* ----------------------------------------------------------
+   TICKER STRIP
+---------------------------------------------------------- */
+
+.sv-news-page .sv-chart-ticker {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    background: rgba(168,85,247,0.06);
+    border-top: 1px solid rgba(255,255,255,0.06);
+
+    z-index: 7;
+}
+
+.sv-news-page .sv-chart-ticker-track {
+    display: flex;
+    gap: 35px;
+
+    white-space: nowrap;
+
+    animation: svTickerMove 22s linear infinite;
+}
+
+.sv-news-page .sv-chart-ticker span {
+    color: rgba(255,255,255,0.58);
+    font-size: 10px;
+    letter-spacing: 0.5px;
+}
+
+.sv-news-page .sv-chart-ticker .positive {
+    color: #4ade80;
+}
+
+.sv-news-page .sv-chart-ticker .negative {
+    color: #fb7185;
+}
+
+@keyframes svTickerMove {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+/* ----------------------------------------------------------
+   NEWS CARDS
+---------------------------------------------------------- */
+
+.sv-news-page .news-card {
+    position: relative;
+
+    height: 100%;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.055),
+            rgba(255,255,255,0.018)
+        );
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,0.25);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.sv-news-page .news-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(168,85,247,0.35);
+
+    box-shadow:
+        0 20px 55px rgba(0,0,0,0.35),
+        0 0 30px rgba(168,85,247,0.08);
+}
+
+
+/* ----------------------------------------------------------
+   NEWS IMAGE
+---------------------------------------------------------- */
+
+.sv-news-page .news-card img {
+    width: 100%;
+    height: 190px;
+
+    object-fit: cover;
+
+    border-radius: 13px;
+
+    margin-bottom: 16px;
+
+    transition: transform 0.4s ease;
+}
+
+.sv-news-page .news-card:hover img {
+    transform: scale(1.025);
+}
+
+
+/* ----------------------------------------------------------
+   NEWS CATEGORY
+---------------------------------------------------------- */
+
+.sv-news-page .news-category {
+    display: inline-flex;
+
+    padding: 5px 9px;
+
+    border-radius: 7px;
+
+    background: rgba(168,85,247,0.10);
+    border: 1px solid rgba(168,85,247,0.18);
+
+    color: #c084fc;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+
+/* ----------------------------------------------------------
+   NEWS TITLE
+---------------------------------------------------------- */
+
+.sv-news-page .news-card h3 {
+    margin: 12px 0 8px;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    line-height: 1.45;
+    font-weight: 650;
+}
+
+.sv-news-page .news-card p {
+    color: rgba(255,255,255,0.55);
+
+    font-size: 13px;
+    line-height: 1.65;
+
+    margin: 0;
+}
+
+
+/* ----------------------------------------------------------
+   NEWS META
+---------------------------------------------------------- */
+
+.sv-news-page .news-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 18px;
+    padding-top: 13px;
+
+    border-top: 1px solid rgba(255,255,255,0.07);
+
+    color: rgba(255,255,255,0.38);
+
+    font-size: 11px;
+}
+
+
+/* ----------------------------------------------------------
+   SECTION TITLES
+---------------------------------------------------------- */
+
+.sv-news-page .section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.sv-news-page .section-title h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.sv-news-page .section-title p {
+    margin: 4px 0 0;
+
+    color: rgba(255,255,255,0.45);
+
+    font-size: 12px;
+}
+
+
+/* ----------------------------------------------------------
+   NEWS FILTERS
+---------------------------------------------------------- */
+
+.sv-news-page .news-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+
+    margin-bottom: 25px;
+}
+
+.sv-news-page .news-filter button {
+    padding: 8px 14px;
+
+    border-radius: 9px;
+
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.08);
+
+    color: rgba(255,255,255,0.58);
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.sv-news-page .news-filter button:hover,
+.sv-news-page .news-filter button.active {
+    background: rgba(168,85,247,0.14);
+
+    border-color: rgba(168,85,247,0.35);
+
+    color: #d8b4fe;
+
+    box-shadow:
+        0 0 18px rgba(168,85,247,0.08);
+}
+
+
+/* ----------------------------------------------------------
+   MARKET SUMMARY
+---------------------------------------------------------- */
+
+.sv-news-page .market-summary {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+.sv-news-page .summary-card {
+    padding: 17px;
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,0.035);
+
+    border: 1px solid rgba(255,255,255,0.07);
+}
+
+.sv-news-page .summary-card small {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: rgba(255,255,255,0.4);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.sv-news-page .summary-card strong {
+    color: #ffffff;
+
+    font-size: 18px;
+}
+
+.sv-news-page .summary-card span {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #4ade80;
+
+    font-size: 11px;
+}
+
+
+/* ----------------------------------------------------------
+   RESPONSIVE
+---------------------------------------------------------- */
+
+@media (max-width: 991px) {
+
+    .sv-news-page .sv-featured-visual {
+        min-height: 400px;
+    }
+
+    .sv-news-page .sv-market-card:nth-child(2) {
+        right: 22px;
+    }
+
+    .sv-news-page .sv-market-card:nth-child(3) {
+        left: 22px;
+    }
+
+    .sv-news-page .sv-market-chart {
+        left: 22px;
+        right: 22px;
+    }
+
+    .sv-news-page .sv-volume-bars {
+        left: 22px;
+        right: 22px;
+    }
+}
+
+
+@media (max-width: 767px) {
+
+    .sv-news-page {
+        padding-top: 20px;
+    }
+
+    .sv-news-page .sv-featured-visual {
+        min-height: 390px;
+        border-radius: 18px;
+    }
+
+    .sv-news-page .sv-chart-header {
+        top: 20px;
+        left: 20px;
+        right: 20px;
+    }
+
+    .sv-news-page .sv-chart-title strong {
+        font-size: 19px;
+    }
+
+    .sv-news-page .sv-market-price {
+        display: none;
+    }
+
+    .sv-news-page .sv-market-card {
+        min-width: 125px;
+        padding: 10px 12px;
+    }
+
+    .sv-news-page .sv-market-card:nth-child(2) {
+        right: 18px;
+        top: 100px;
+    }
+
+    .sv-news-page .sv-market-card:nth-child(3) {
+        left: 18px;
+        top: 135px;
+    }
+
+    .sv-news-page .sv-market-chart {
+        left: 15px;
+        right: 15px;
+        bottom: 38px;
+        height: 190px;
+    }
+
+    .sv-news-page .sv-volume-bars {
+        left: 15px;
+        right: 15px;
+    }
+
+    .sv-news-page .market-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .sv-news-page .news-card img {
+        height: 170px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .sv-news-page .sv-featured-visual {
+        min-height: 360px;
+    }
+
+    .sv-news-page .sv-market-card:nth-child(3) {
+        display: none;
+    }
+
+    .sv-news-page .sv-chart-title small {
+        font-size: 9px;
+    }
+
+    .sv-news-page .sv-chart-title strong {
+        font-size: 17px;
+    }
+
+    .sv-news-page .sv-market-chart {
+        height: 175px;
+    }
+}
+
+
+/* ----------------------------------------------------------
+   PERFORMANCE
+---------------------------------------------------------- */
+
+.sv-news-page * {
+    box-sizing: border-box;
+}
+
+.sv-news-page img {
+    max-width: 100%;
+}
+
+
+/* ----------------------------------------------------------
+   ACCESSIBILITY
+---------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .sv-news-page .sv-market-card,
+    .sv-news-page .sv-chart-ticker-track,
+    .sv-news-page .sv-live-badge::before {
+        animation: none !important;
+    }
+
+    .sv-news-page .news-card {
+        transition: none;
+    }
+}

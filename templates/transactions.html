@@ -1,0 +1,498 @@
+{% extends "base.html" %}
+
+{% block title %}
+History | StockVision Pro
+{% endblock %}
+
+{% block content %}
+
+<div class="sv-history-page">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="sv-history-hero">
+
+        <div class="sv-history-intro">
+
+            <div class="sv-history-kicker">
+                <span></span>
+                STOCKVISION PRO / TRADING HISTORY
+            </div>
+
+            <h1>
+                Trade <strong>History</strong>
+            </h1>
+
+            <p>
+                Review your paper-trading activity, executed
+                positions and transaction values in one place.
+            </p>
+
+        </div>
+
+
+        <div class="sv-history-overview">
+
+            <div class="sv-history-overview-top">
+
+                <div>
+                    <span>ACTIVITY STATUS</span>
+
+                    <strong>
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        TRANSACTION LOG
+                    </strong>
+                </div>
+
+                <div class="sv-history-live">
+                    <span></span>
+                    TRACKING
+                </div>
+
+            </div>
+
+
+            <div class="sv-history-overview-bottom">
+
+                <div>
+
+                    <small>
+                        TOTAL TRANSACTIONS
+                    </small>
+
+                    <strong>
+                        {{ transactions|length }}
+                    </strong>
+
+                </div>
+
+                <div class="sv-history-overview-icon">
+
+                    <i class="fa-solid fa-receipt"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    {% if transactions %}
+
+    <!-- =========================
+         MAIN HISTORY
+    ========================== -->
+
+    <section class="sv-history-main">
+
+        <div class="sv-history-panel">
+
+            <!-- PANEL HEADER -->
+
+            <div class="sv-history-panel-head">
+
+                <div>
+
+                    <span>
+                        EXECUTION LOG
+                    </span>
+
+                    <h2>
+                        Recent <strong>Transactions</strong>
+                    </h2>
+
+                </div>
+
+
+                <div class="sv-history-count">
+
+                    <i class="fa-solid fa-list"></i>
+
+                    {{ transactions|length }}
+                    Records
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="sv-history-table-wrap">
+
+                <table class="sv-history-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                TYPE
+                            </th>
+
+                            <th>
+                                ASSET
+                            </th>
+
+                            <th>
+                                QUANTITY
+                            </th>
+
+                            <th>
+                                PRICE
+                            </th>
+
+                            <th>
+                                TRANSACTION VALUE
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for transaction in transactions %}
+
+                        <tr>
+
+                            <!-- TYPE -->
+
+                            <td>
+
+                                {% if transaction.type|lower == "buy" %}
+
+                                <span class="sv-history-type sv-history-buy">
+
+                                    <i class="fa-solid fa-arrow-down"></i>
+
+                                    BUY
+
+                                </span>
+
+                                {% elif transaction.type|lower == "sell" %}
+
+                                <span class="sv-history-type sv-history-sell">
+
+                                    <i class="fa-solid fa-arrow-up"></i>
+
+                                    SELL
+
+                                </span>
+
+                                {% else %}
+
+                                <span class="sv-history-type sv-history-other">
+
+                                    <i class="fa-solid fa-circle"></i>
+
+                                    {{ transaction.type }}
+
+                                </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <!-- ASSET -->
+
+                            <td>
+
+                                <div class="sv-history-asset">
+
+                                    <div class="sv-history-asset-icon">
+
+                                        <i class="fa-solid fa-chart-simple"></i>
+
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            {{ transaction.symbol }}
+                                        </strong>
+
+                                        <small>
+                                            EQUITY
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <!-- QUANTITY -->
+
+                            <td>
+
+                                <div class="sv-history-quantity">
+
+                                    <strong>
+                                        {{ transaction.quantity }}
+                                    </strong>
+
+                                    <span>
+                                        shares
+                                    </span>
+
+                                </div>
+
+                            </td>
+
+
+                            <!-- PRICE -->
+
+                            <td>
+
+                                <span class="sv-history-price">
+
+                                    ${{ transaction.price }}
+
+                                </span>
+
+                                <small class="sv-history-per-share">
+                                    PER SHARE
+                                </small>
+
+                            </td>
+
+
+                            <!-- TOTAL -->
+
+                            <td>
+
+                                <strong class="sv-history-total">
+
+                                    ${{ "%.2f"|format(transaction.total) }}
+
+                                </strong>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             SIDE PANEL
+        ========================== -->
+
+        <aside class="sv-history-side">
+
+            <div class="sv-history-side-head">
+
+                <span>
+                    TRADE SUMMARY
+                </span>
+
+                <h2>
+                    Activity <strong>Overview</strong>
+                </h2>
+
+            </div>
+
+
+            <div class="sv-history-stat">
+
+                <div class="sv-history-stat-icon">
+
+                    <i class="fa-solid fa-receipt"></i>
+
+                </div>
+
+                <div>
+
+                    <small>
+                        RECORDS
+                    </small>
+
+                    <strong>
+                        {{ transactions|length }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="sv-history-stat">
+
+                <div class="sv-history-stat-icon">
+
+                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+
+                </div>
+
+                <div>
+
+                    <small>
+                        MODE
+                    </small>
+
+                    <strong>
+                        PAPER
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="sv-history-stat">
+
+                <div class="sv-history-stat-icon">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                </div>
+
+                <div>
+
+                    <small>
+                        ACTIVITY
+                    </small>
+
+                    <strong>
+                        TRACKED
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="sv-history-note">
+
+                <div class="sv-history-note-icon">
+
+                    <i class="fa-solid fa-lightbulb"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        TRADING NOTE
+                    </span>
+
+                    <p>
+                        Review your previous trades to
+                        understand your paper-trading decisions
+                        and improve your strategy.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+
+    <!-- =========================
+         BOTTOM CTA
+    ========================== -->
+
+    <section class="sv-history-bottom">
+
+        <div>
+
+            <span>
+                STOCKVISION PRO / TRADE INTELLIGENCE
+            </span>
+
+            <h2>
+                Review the trade.
+                <strong>Improve the strategy.</strong>
+            </h2>
+
+        </div>
+
+
+        <a href="/paper-trading">
+
+            Continue Trading
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </section>
+
+
+    {% else %}
+
+    <!-- =========================
+         EMPTY STATE
+    ========================== -->
+
+    <section class="sv-history-empty">
+
+        <div class="sv-history-empty-icon">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+        </div>
+
+        <span>
+            HISTORY / EMPTY
+        </span>
+
+        <h2>
+            No trading activity
+            <strong>yet.</strong>
+        </h2>
+
+        <p>
+            Your paper-trading transactions will appear here
+            after you make your first buy or sell.
+        </p>
+
+        <a
+            href="/paper-trading"
+            class="sv-history-primary-btn"
+        >
+
+            <i class="fa-solid fa-arrow-trend-up"></i>
+
+            Start Paper Trading
+
+        </a>
+
+    </section>
+
+    {% endif %}
+
+
+    <div class="sv-history-note-footer">
+
+        <i class="fa-solid fa-circle-info"></i>
+
+        <span>
+            This history contains simulated paper-trading
+            transactions only.
+        </span>
+
+    </div>
+
+</div>
+
+{% endblock %}

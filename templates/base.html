@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}StockVision Pro{% endblock %}
+    </title>
+
+    <!-- Font -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Icons -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    >
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    {% block extra_head %}
+    {% endblock %}
+
+</head>
+
+
+<body>
+
+
+<!-- ================= LOADING SCREEN ================= -->
+
+<div id="pageLoader">
+
+    <div class="loader-logo">
+
+        <div class="loader-icon">
+            <i class="fa-solid fa-chart-line"></i>
+        </div>
+
+        <h2>
+            StockVision
+            <span>Pro</span>
+        </h2>
+
+    </div>
+
+    <p>INITIALIZING MARKET INTELLIGENCE</p>
+
+    <div class="loader-bar">
+
+        <div class="loader-progress"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= BACKGROUND ================= -->
+
+<div class="animated-bg">
+
+    <div class="bg-orb orb-1"></div>
+
+    <div class="bg-orb orb-2"></div>
+
+    <div class="bg-orb orb-3"></div>
+
+    <div class="grid-bg"></div>
+
+</div>
+
+
+<!-- ================= APP ================= -->
+
+<div class="app-container">
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+
+        <!-- LOGO -->
+
+        <a
+            href="{{ url_for('home') }}"
+            class="logo"
+        >
+
+            <div class="logo-mark">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+            </div>
+
+
+            <div class="logo-text">
+
+                <span>
+                    StockVision
+                </span>
+
+                <strong>
+                    Pro
+                </strong>
+
+            </div>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <div class="nav-links">
+
+
+            <a
+                href="{{ url_for('home') }}"
+                class="{% if request.endpoint == 'home' %}active{% endif %}"
+            >
+
+                <i class="fa-solid fa-house"></i>
+
+                Home
+
+            </a>
+
+
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="{% if request.endpoint == 'dashboard' %}active{% endif %}"
+            >
+
+                <i class="fa-solid fa-table-columns"></i>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="{{ url_for('charts') }}"
+                class="{% if request.endpoint == 'charts' %}active{% endif %}"
+            >
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                Charts
+
+            </a>
+
+            <a
+    href="{{ url_for('prediction') }}"
+    class="{% if request.endpoint == 'prediction' %}active{% endif %}"
+>
+
+    <i class="fa-solid fa-robot"></i>
+
+    Prediction
+
+</a>
+
+
+            <a
+                href="{{ url_for('watchlist') }}"
+                class="{% if request.endpoint == 'watchlist' %}active{% endif %}"
+            >
+
+                <i class="fa-solid fa-star"></i>
+
+                Watchlist
+
+            </a>
+
+
+            <a
+                href="{{ url_for('portfolio') }}"
+                class="{% if request.endpoint == 'portfolio' %}active{% endif %}"
+            >
+
+                <i class="fa-solid fa-wallet"></i>
+
+                Portfolio
+
+            </a>
+
+
+            <a
+                href="{{ url_for('paper_trading') }}"
+                class="{% if request.endpoint == 'paper_trading' %}active{% endif %}"
+            >
+
+                <i class="fa-solid fa-money-bill-trend-up"></i>
+
+                Trading
+
+            </a>
+
+
+            <a
+                href="{{ url_for('transactions') }}"
+                class="{% if request.endpoint == 'transactions' %}active{% endif %}"
+            >
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+                History
+
+            </a>
+
+
+            <a
+                href="{{ url_for('news') }}"
+                class="{% if request.endpoint == 'news' %}active{% endif %}"
+            >
+
+                <i class="fa-solid fa-newspaper"></i>
+
+                News
+
+            </a>
+
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <div class="nav-actions">
+
+            <a
+                href="{{ url_for('login') }}"
+                class="nav-login"
+            >
+
+                Login
+
+            </a>
+
+        </div>
+
+
+    </nav>
+
+
+    <!-- ================= PAGE ================= -->
+
+    <main class="main-content">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+
+        <div class="footer-content">
+
+
+            <div class="footer-brand">
+
+                <div class="footer-logo">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    StockVision
+
+                    <span>
+                        Pro
+                    </span>
+
+                </div>
+
+
+                <p>
+                    Real-Time Stock Market Intelligence Platform
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <span>
+                    Market Data
+                </span>
+
+                <span>
+                    Analytics
+                </span>
+
+                <span>
+                    Portfolio
+                </span>
+
+                <span>
+                    Paper Trading
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 StockVision Pro
+            </span>
+
+
+            <span class="developed-by">
+
+                Developed with
+
+                <i class="fa-solid fa-heart"></i>
+
+                by
+
+                <strong>
+                    Yashodha
+                </strong>
+
+            </span>
+
+        </div>
+
+
+    </footer>
+
+
+</div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script
+    src="{{ url_for('static', filename='js/main.js') }}"
+></script>
+
+
+{% block scripts %}
+{% endblock %}
+
+
+</body>
+
+</html>

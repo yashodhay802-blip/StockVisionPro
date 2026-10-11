@@ -1,0 +1,647 @@
+```html
+{% extends "base.html" %}
+
+{% block title %}
+Paper Trading | StockVision Pro
+{% endblock %}
+
+
+{% block content %}
+
+<div class="trading-page">
+
+    <!-- ================= HEADER ================= -->
+
+    <section class="trading-hero">
+
+        <div class="trading-hero-left">
+
+            <div class="trading-eyebrow">
+                <span class="pulse-dot"></span>
+                PAPER TRADING TERMINAL
+            </div>
+
+            <h1>
+                Trade Without
+                <span>Risk.</span>
+            </h1>
+
+            <p>
+                Practice your investment strategies using virtual
+                money and real-time market prices.
+            </p>
+
+        </div>
+
+
+        <div class="trading-live-card">
+
+            <div class="trading-live-top">
+
+                <span class="live-indicator">
+                    <span></span>
+                    LIVE
+                </span>
+
+                <small>
+                    SIMULATION MODE
+                </small>
+
+            </div>
+
+            <strong>
+                Virtual Trading
+            </strong>
+
+            <p>
+                No real money involved
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ACCOUNT STATS ================= -->
+
+    <section class="trading-stats-grid">
+
+
+        <div class="trading-stat-card">
+
+            <div class="trading-stat-icon purple">
+                $
+            </div>
+
+            <div>
+                <small>AVAILABLE CASH</small>
+
+                <h2>
+                    ${{ "%.2f"|format(cash) }}
+                </h2>
+
+                <span class="stat-muted">
+                    Ready to trade
+                </span>
+            </div>
+
+        </div>
+
+
+        <div class="trading-stat-card">
+
+            <div class="trading-stat-icon green">
+                ↗
+            </div>
+
+            <div>
+                <small>TRADING MODE</small>
+
+                <h2 class="green-text">
+                    PAPER
+                </h2>
+
+                <span class="stat-muted">
+                    Risk-free simulation
+                </span>
+            </div>
+
+        </div>
+
+
+        <div class="trading-stat-card">
+
+            <div class="trading-stat-icon blue">
+                ◉
+            </div>
+
+            <div>
+                <small>MARKET STATUS</small>
+
+                <h2 class="green-text">
+                    LIVE
+                </h2>
+
+                <span class="stat-muted">
+                    Market feed connected
+                </span>
+            </div>
+
+        </div>
+
+
+        <div class="trading-stat-card">
+
+            <div class="trading-stat-icon orange">
+                #
+            </div>
+
+            <div>
+                <small>AVAILABLE STOCKS</small>
+
+                <h2>
+                    {{ stocks|length }}
+                </h2>
+
+                <span class="stat-muted">
+                    Companies to trade
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAIN TRADING AREA ================= -->
+
+    <section class="trading-workspace">
+
+
+        <!-- LEFT: ORDER PANEL -->
+
+        <div class="order-card">
+
+            <div class="order-card-header">
+
+                <div>
+
+                    <span class="card-eyebrow">
+                        PLACE ORDER
+                    </span>
+
+                    <h2>
+                        Buy <span>Stock</span>
+                    </h2>
+
+                </div>
+
+                <div class="order-icon">
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                </div>
+
+            </div>
+
+
+            <div class="order-divider"></div>
+
+
+            <form
+                action="/paper-trading/buy"
+                method="POST"
+                class="trading-form"
+            >
+
+
+                <!-- STOCK -->
+
+                <div class="form-group">
+
+                    <label>
+                        <span>01</span>
+                        SELECT STOCK
+                    </label>
+
+
+                    <div class="select-wrapper">
+
+                        <select
+                            name="symbol"
+                            id="tradeSymbol"
+                            required
+                        >
+
+                            {% for symbol, name in stocks.items() %}
+
+                            <option value="{{ symbol }}">
+
+                                {{ symbol }} — {{ name }}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                        <i class="fa-solid fa-chevron-down"></i>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUANTITY -->
+
+                <div class="form-group">
+
+                    <label>
+                        <span>02</span>
+                        QUANTITY
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="number"
+                            name="quantity"
+                            id="tradeQuantity"
+                            min="1"
+                            value="1"
+                            required
+                        >
+
+                        <span>
+                            SHARES
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PRICE -->
+
+                <div class="form-group">
+
+                    <label>
+                        <span>03</span>
+                        PRICE PER SHARE
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="currency">
+                            $
+                        </span>
+
+                        <input
+                            type="number"
+                            name="price"
+                            id="tradePrice"
+                            step="0.01"
+                            min="0.01"
+                            placeholder="0.00"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- ORDER SUMMARY -->
+
+                <div class="order-summary">
+
+                    <div>
+
+                        <span>
+                            ORDER TYPE
+                        </span>
+
+                        <strong>
+                            MARKET BUY
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            ESTIMATED COST
+                        </span>
+
+                        <strong id="estimatedCost">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUY BUTTON -->
+
+                <button
+                    type="submit"
+                    class="buy-stock-btn"
+                >
+
+                    <span class="buy-icon">
+                        ↗
+                    </span>
+
+                    <span>
+                        BUY STOCK
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+
+                <div class="trading-note">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <span>
+                        This is a simulated trade.
+                        No real money will be used.
+                    </span>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+
+        <!-- RIGHT: MARKET PANEL -->
+
+        <div class="market-preview-card">
+
+
+            <div class="market-preview-header">
+
+                <div>
+
+                    <span class="card-eyebrow">
+                        MARKET OVERVIEW
+                    </span>
+
+                    <h2>
+                        Trading <span>Universe</span>
+                    </h2>
+
+                </div>
+
+
+                <div class="market-live-pill">
+
+                    <span></span>
+
+                    LIVE
+
+                </div>
+
+            </div>
+
+
+            <div class="market-preview-body">
+
+                <div class="market-message">
+
+                    <div class="market-message-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+
+                    <h3>
+                        Ready to Trade
+                    </h3>
+
+                    <p>
+                        Select a company from the order panel
+                        and enter your desired quantity and price.
+                    </p>
+
+                </div>
+
+
+                <div class="trading-features">
+
+                    <div>
+
+                        <span class="feature-check">
+                            ✓
+                        </span>
+
+                        Virtual cash
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="feature-check">
+                            ✓
+                        </span>
+
+                        Risk-free trading
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="feature-check">
+                            ✓
+                        </span>
+
+                        Portfolio tracking
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="feature-check">
+                            ✓
+                        </span>
+
+                        Transaction history
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= HOW IT WORKS ================= -->
+
+    <section class="how-trading-works">
+
+        <div class="section-heading">
+
+            <span>
+                SIMPLE &amp; POWERFUL
+            </span>
+
+            <h2>
+                How Paper Trading
+                <strong>Works</strong>
+            </h2>
+
+        </div>
+
+
+        <div class="trading-steps">
+
+
+            <div class="trading-step">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <div class="step-icon">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                </div>
+
+                <h3>
+                    Choose a Stock
+                </h3>
+
+                <p>
+                    Select any available company
+                    from the trading universe.
+                </p>
+
+            </div>
+
+
+            <div class="step-line"></div>
+
+
+            <div class="trading-step">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <div class="step-icon">
+                    <i class="fa-solid fa-sliders"></i>
+                </div>
+
+                <h3>
+                    Set Your Order
+                </h3>
+
+                <p>
+                    Enter the quantity and
+                    price you want to trade.
+                </p>
+
+            </div>
+
+
+            <div class="step-line"></div>
+
+
+            <div class="trading-step">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <div class="step-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+
+                <h3>
+                    Execute Trade
+                </h3>
+
+                <p>
+                    Place your simulated order
+                    using virtual cash.
+                </p>
+
+            </div>
+
+
+            <div class="step-line"></div>
+
+
+            <div class="trading-step">
+
+                <div class="step-number">
+                    04
+                </div>
+
+                <div class="step-icon">
+                    <i class="fa-solid fa-chart-pie"></i>
+                </div>
+
+                <h3>
+                    Track Performance
+                </h3>
+
+                <p>
+                    Monitor your portfolio and
+                    transaction history.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<!-- ================= TRADING PAGE JS ================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const quantity =
+        document.getElementById("tradeQuantity");
+
+    const price =
+        document.getElementById("tradePrice");
+
+    const estimatedCost =
+        document.getElementById("estimatedCost");
+
+
+    function updateCost() {
+
+        const qty =
+            parseFloat(quantity.value) || 0;
+
+        const amount =
+            parseFloat(price.value) || 0;
+
+        const total =
+            qty * amount;
+
+
+        estimatedCost.textContent =
+            "$" + total.toFixed(2);
+
+    }
+
+
+    quantity.addEventListener(
+        "input",
+        updateCost
+    );
+
+
+    price.addEventListener(
+        "input",
+        updateCost
+    );
+
+
+    updateCost();
+
+});
+
+</script>
+
+
+{% endblock %}
+```

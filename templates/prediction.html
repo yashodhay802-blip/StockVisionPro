@@ -1,0 +1,387 @@
+{% extends "base.html" %}
+
+{% block title %}
+Stock Prediction | StockVision Pro
+{% endblock %}
+
+{% block content %}
+
+<div class="prediction-page">
+
+    <!-- Header -->
+    <div class="prediction-header">
+        <div>
+            <span class="prediction-badge">
+                <i class="fa-solid fa-robot"></i>
+                AI POWERED
+            </span>
+
+            <h1>Stock Price Prediction</h1>
+
+            <p>
+                AI-based stock price prediction and trend analysis
+                using historical market data and technical indicators.
+            </p>
+        </div>
+    </div>
+
+
+    <!-- Search Section -->
+    <div class="prediction-search-card">
+
+        <div class="search-title">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            Select Stock
+        </div>
+
+        <div class="search-row">
+
+            <input
+                type="text"
+                id="stockSymbol"
+                class="stock-input"
+                placeholder="Enter stock symbol (e.g. AAPL)"
+                value="AAPL"
+                autocomplete="off"
+            >
+            
+            <select id="predictionHorizon" class="stock-input">
+                <option value="1">Next Trading Day</option>
+                <option value="7">7 Trading Days</option>
+                <option value="21">1 Month</option>
+            </select>
+        
+            <button
+                type="button"
+                class="predict-btn"
+                onclick="runPrediction()"
+            >
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                Predict
+            </button>
+
+        </div>
+
+        <div class="popular-stocks">
+
+            <span>Popular:</span>
+
+            <button onclick="selectStock('AAPL')">AAPL</button>
+            <button onclick="selectStock('MSFT')">MSFT</button>
+            <button onclick="selectStock('NVDA')">NVDA</button>
+            <button onclick="selectStock('TSLA')">TSLA</button>
+            <button onclick="selectStock('AMZN')">AMZN</button>
+            <button onclick="selectStock('GOOGL')">GOOGL</button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Loading -->
+    <div id="predictionLoading" class="prediction-loading">
+
+        <div class="loading-spinner"></div>
+
+        <h3>Analyzing Market Data...</h3>
+
+        <p>
+            Training the prediction model and analyzing technical indicators.
+        </p>
+
+    </div>
+
+
+    <!-- Error -->
+    <div id="predictionError" class="prediction-error">
+
+        <i class="fa-solid fa-circle-exclamation"></i>
+
+        <span id="errorMessage">
+            Unable to generate prediction.
+        </span>
+
+    </div>
+
+
+    <!-- Results -->
+    <div id="predictionResults">
+
+
+        <!-- Main Prediction Cards -->
+        <div class="prediction-grid">
+
+
+            <!-- Current Price -->
+            <div class="prediction-card">
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <div class="card-label">
+                    CURRENT PRICE
+                </div>
+
+                <div
+                    id="currentPrice"
+                    class="card-value"
+                >
+                    --
+                </div>
+
+            </div>
+
+
+            <!-- Predicted Price -->
+            <div class="prediction-card highlight-card">
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+
+                <div class="card-label">
+    PREDICTED PRICE
+</div>
+
+<div
+    id="predictedPrice"
+    class="card-value"
+>
+    --
+</div>
+
+<div
+    id="predictionPeriod"
+    class="prediction-period"
+>
+    Next Trading Day
+</div>
+
+            </div>
+
+
+            <!-- Expected Change -->
+            <div class="prediction-card">
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                </div>
+
+                <div class="card-label">
+                    EXPECTED CHANGE
+                </div>
+
+                <div
+                    id="expectedChange"
+                    class="card-value"
+                >
+                    --
+                </div>
+
+            </div>
+
+
+            <!-- Confidence -->
+            <div class="prediction-card">
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+
+                <div class="card-label">
+                    MODEL CONFIDENCE
+                </div>
+
+                <div
+                    id="confidence"
+                    class="card-value"
+                >
+                    --
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Analysis Row -->
+        <div class="analysis-grid">
+
+
+            <!-- Trend -->
+            <div class="analysis-card">
+
+                <div class="analysis-heading">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    Market Trend
+                </div>
+
+                <div
+                    id="trend"
+                    class="analysis-value"
+                >
+                    --
+                </div>
+
+            </div>
+
+
+            <!-- Signal -->
+            <div class="analysis-card">
+
+                <div class="analysis-heading">
+                    <i class="fa-solid fa-bolt"></i>
+                    Trading Signal
+                </div>
+
+                <div
+                    id="signal"
+                    class="analysis-value"
+                >
+                    --
+                </div>
+
+            </div>
+
+
+            <!-- Risk -->
+            <div class="analysis-card">
+
+                <div class="analysis-heading">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    Risk Level
+                </div>
+
+                <div
+                    id="risk"
+                    class="analysis-value"
+                >
+                    --
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Technical Indicators -->
+        <div class="indicators-section">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-badge">
+                        TECHNICAL ANALYSIS
+                    </span>
+
+                    <h2>Market Indicators</h2>
+                </div>
+            </div>
+
+
+            <div class="indicator-grid">
+
+
+                <div class="indicator-card">
+
+                    <span>RSI (14)</span>
+
+                    <strong id="rsi">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="indicator-card">
+
+                    <span>MACD</span>
+
+                    <strong id="macd">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="indicator-card">
+
+                    <span>Stock</span>
+
+                    <strong id="predictionSymbol">
+                        --
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- Prediction Chart -->
+        <div class="prediction-chart-card">
+
+            <div class="chart-header">
+
+                <div>
+
+                    <span class="section-badge">
+                        AI FORECAST
+                    </span>
+
+                    <h2>
+                        Historical Price & Prediction
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div
+                id="predictionChart"
+                class="prediction-chart"
+            ></div>
+
+        </div>
+
+
+        <!-- Disclaimer -->
+        <div class="prediction-disclaimer">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <p>
+                This prediction is generated using historical market data,
+                technical indicators and a machine learning model.
+                It is intended for educational and analytical purposes only
+                and should not be considered guaranteed financial advice.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/prediction.css') }}"
+>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
+<script src="{{ url_for('static', filename='js/prediction.js') }}"></script>
+
+{% endblock %}

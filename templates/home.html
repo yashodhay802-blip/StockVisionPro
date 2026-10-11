@@ -1,0 +1,454 @@
+{% extends "base.html" %}
+
+{% block title %}
+StockVision Pro | Smart Stock Market Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+
+<section  class="hero">
+
+        
+    <div class="hero-overlay"></div>
+
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+
+            <span class="live-dot"></span>
+
+            LIVE MARKET INTELLIGENCE
+
+        </div>
+
+
+        <h1>
+
+            See The Market.
+
+            <span>
+                Own The Future.
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            Track stocks, analyse market performance,
+            monitor your portfolio and practice trading
+            with a powerful real-time market dashboard.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="/dashboard"
+                class="primary-btn"
+            >
+
+                Explore Dashboard
+                <span>→</span>
+
+            </a>
+
+
+            <a
+                href="/charts"
+                class="secondary-btn"
+            >
+
+                Explore Charts
+
+            </a>
+
+        </div>
+
+
+        <!-- ================= MARKET STATS ================= -->
+
+        <div class="hero-stats">
+
+
+            <div class="hero-stat">
+
+                <span class="stat-label">
+
+                    MARKET STATUS
+
+                </span>
+
+
+                <strong class="market-open">
+
+                    ● Market Live
+
+                </strong>
+
+            </div>
+
+
+
+            <div class="hero-stat">
+
+                <span class="stat-label">
+
+                    STOCK COVERAGE
+
+                </span>
+
+
+                <strong>
+
+                    30+ Companies
+
+                </strong>
+
+            </div>
+
+
+
+            <div class="hero-stat">
+
+                <span class="stat-label">
+
+                    PLATFORM
+
+                </span>
+
+
+                <strong>
+
+                    Real-Time Analytics
+
+                </strong>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FLOATING CARD ================= -->
+
+    <div class="market-floating-card">
+
+        <div class="floating-card-header">
+
+            <div>
+
+                <small>
+                    MARKET INSIGHT
+                </small>
+
+                <h3>
+                    S&P 500
+                </h3>
+
+            </div>
+
+
+            <span class="pulse-dot"></span>
+
+        </div>
+
+
+        <div class="market-price">
+
+            <h2>
+                Live Market
+            </h2>
+
+            <span>
+                Real-Time Data
+            </span>
+
+        </div>
+
+
+        <div class="mini-chart">
+
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= PLATFORM FEATURES ================= -->
+
+<section class="home-features">
+
+
+    <div class="section-title">
+
+        <span>
+            EVERYTHING YOU NEED
+        </span>
+
+        <h2>
+
+            One Platform.
+
+            <strong>
+                Complete Market Intelligence.
+            </strong>
+
+        </h2>
+
+        <p>
+
+            Everything you need to understand,
+            analyse and track the stock market.
+
+        </p>
+
+    </div>
+
+
+
+    <div class="feature-grid">
+
+
+        <div class="home-feature-card">
+
+            <div class="feature-icon">
+
+                📊
+
+            </div>
+
+
+            <h3>
+
+                Live Dashboard
+
+            </h3>
+
+
+            <p>
+
+                Monitor 30+ companies with
+                live price, volume, high,
+                low and market movement.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="home-feature-card">
+
+            <div class="feature-icon">
+
+                📈
+
+            </div>
+
+
+            <h3>
+
+                Advanced Charts
+
+            </h3>
+
+
+            <p>
+
+                Analyse market movement using
+                gain/loss charts, candlestick
+                charts and sector distribution.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="home-feature-card">
+
+            <div class="feature-icon">
+
+                ☆
+
+            </div>
+
+
+            <h3>
+
+                Smart Watchlist
+
+            </h3>
+
+
+            <p>
+
+                Save your favourite companies
+                and monitor them in your
+                personalised watchlist.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="home-feature-card">
+
+            <div class="feature-icon">
+
+                💼
+
+            </div>
+
+
+            <h3>
+
+                Portfolio Tracking
+
+            </h3>
+
+
+            <p>
+
+                Track your investments,
+                holdings and portfolio
+                performance in one place.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="home-feature-card">
+
+            <div class="feature-icon">
+
+                ⚡
+
+            </div>
+
+
+            <h3>
+
+                Paper Trading
+
+            </h3>
+
+
+            <p>
+
+                Practice buying stocks
+                using virtual money without
+                risking real capital.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="home-feature-card">
+
+            <div class="feature-icon">
+
+                📰
+
+            </div>
+
+
+            <h3>
+
+                Market News
+
+            </h3>
+
+
+            <p>
+
+                Stay updated with the latest
+                stock market news and
+                financial information.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= CTA ================= -->
+
+<section class="home-cta">
+
+
+    <div>
+
+        <span>
+            READY TO EXPLORE?
+        </span>
+
+
+        <h2>
+
+            Your Market Journey
+
+            <strong>
+                Starts Here.
+            </strong>
+
+        </h2>
+
+
+        <p>
+
+            Explore real-time market insights
+            and powerful analytics with
+            StockVision Pro.
+
+        </p>
+
+
+        <a
+            href="/dashboard"
+            class="primary-btn"
+        >
+
+            Open Dashboard
+            →
+
+        </a>
+
+    </div>
+
+
+</section>
+
+
+{% endblock %}

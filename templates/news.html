@@ -1,0 +1,800 @@
+{% extends "base.html" %}
+
+{% block title %}
+Newsroom | StockVision Pro
+{% endblock %}
+
+{% block content %}
+
+<div class="sv-news-page">
+
+    <!-- =========================
+         NEWSROOM HEADER
+    ========================== -->
+    <section class="sv-news-hero">
+
+        <div class="sv-news-hero-left">
+
+            <div class="sv-news-kicker">
+                <span class="sv-news-live-dot"></span>
+                STOCKVISION PRO / NEWSROOM
+            </div>
+
+            <h1>
+                Market
+                <span>News</span>
+            </h1>
+
+            <p>
+                The latest stories, market movements and insights
+                shaping today's financial landscape.
+            </p>
+
+        </div>
+
+        <div class="sv-news-market-status">
+
+            <div class="sv-status-top">
+                <span>MARKET INTELLIGENCE</span>
+                <i class="fa-solid fa-signal"></i>
+            </div>
+
+            <strong>LIVE</strong>
+
+            <small>
+                Updates throughout the day
+            </small>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         BREAKING NEWS
+    ========================== -->
+    <div class="sv-breaking-bar">
+
+        <div class="sv-breaking-label">
+            <i class="fa-solid fa-bolt"></i>
+            BREAKING
+        </div>
+
+        <div class="sv-breaking-track">
+
+            <span>
+                Global markets, technology stocks and economic
+                developments remain in focus for investors.
+            </span>
+
+            <span>•</span>
+
+            <span>
+                StockVision Market Intelligence
+            </span>
+
+            <span>•</span>
+
+            <span>
+                Real-time market insights
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CATEGORY FILTER
+    ========================== -->
+    <div class="sv-news-categories">
+
+        <button
+            class="sv-news-category active"
+            data-category="all">
+            All
+        </button>
+
+        <button
+            class="sv-news-category"
+            data-category="markets">
+            Markets
+        </button>
+
+        <button
+            class="sv-news-category"
+            data-category="stocks">
+            Stocks
+        </button>
+
+        <button
+            class="sv-news-category"
+            data-category="technology">
+            Technology
+        </button>
+
+        <button
+            class="sv-news-category"
+            data-category="investing">
+            Investing
+        </button>
+
+        <button
+            class="sv-news-category"
+            data-category="economy">
+            Economy
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         MAIN NEWS AREA
+    ========================== -->
+    <section class="sv-news-layout">
+
+
+        <!-- =====================
+             FEATURED STORY
+        ====================== -->
+        <article
+            class="sv-featured-news"
+            data-category="markets">
+
+            <div class="sv-featured-visual">
+
+                <div class="sv-visual-grid"></div>
+
+                <div class="sv-visual-orb"></div>
+
+                <div class="sv-featured-chart">
+
+                    <div class="sv-chart-line"></div>
+
+                    <div class="sv-chart-point p1"></div>
+                    <div class="sv-chart-point p2"></div>
+                    <div class="sv-chart-point p3"></div>
+                    <div class="sv-chart-point p4"></div>
+                    <div class="sv-chart-point p5"></div>
+
+                </div>
+
+                <div class="sv-featured-symbol">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <div class="sv-featured-tag">
+                    FEATURED STORY
+                </div>
+
+            </div>
+
+
+            <div class="sv-featured-content">
+
+                <div class="sv-news-meta">
+
+                    <span>MARKETS</span>
+
+                    <b>—</b>
+
+                    <small>
+                        Today · 5 min read
+                    </small>
+
+                </div>
+
+
+                <h2>
+                    Global Markets Are
+                    <span>Shaping the Next Move</span>
+                </h2>
+
+
+                <p>
+                    Investors continue to assess market momentum,
+                    corporate performance and economic developments
+                    as financial markets respond to changing conditions.
+                </p>
+
+
+                <div class="sv-featured-source">
+
+                    <div class="sv-source-icon">
+                        <i class="fa-solid fa-chart-column"></i>
+                    </div>
+
+                    <div>
+                        <strong>
+                            StockVision Research
+                        </strong>
+
+                        <small>
+                            Market Intelligence Desk
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="sv-news-footer">
+
+                    <span>
+                        <i class="fa-regular fa-clock"></i>
+                        5 min read
+                    </span>
+
+                    <button class="sv-read-btn">
+                        Read full story
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- =====================
+             LATEST STORIES
+        ====================== -->
+        <div class="sv-side-news">
+
+            <div class="sv-side-heading">
+
+                <span>LATEST STORIES</span>
+
+                <h2>
+                    What's happening
+                    <strong>now</strong>
+                </h2>
+
+            </div>
+
+
+            <!-- STORY 01 -->
+            <article
+                class="sv-side-story"
+                data-category="stocks">
+
+                <div class="sv-story-number">
+                    01
+                </div>
+
+                <div class="sv-story-content">
+
+                    <div class="sv-news-meta">
+
+                        <span>STOCKS</span>
+
+                        <b>—</b>
+
+                        <small>
+                            Today · 3 min
+                        </small>
+
+                    </div>
+
+                    <h3>
+                        Technology stocks remain at the centre
+                        of investor attention
+                    </h3>
+
+                    <p>
+                        Major technology companies continue
+                        to influence broader market sentiment.
+                    </p>
+
+                    <div class="sv-story-bottom">
+
+                        <span>
+                            Read story
+                        </span>
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- STORY 02 -->
+            <article
+                class="sv-side-story"
+                data-category="technology">
+
+                <div class="sv-story-number">
+                    02
+                </div>
+
+                <div class="sv-story-content">
+
+                    <div class="sv-news-meta">
+
+                        <span>TECHNOLOGY</span>
+
+                        <b>—</b>
+
+                        <small>
+                            Today · 4 min
+                        </small>
+
+                    </div>
+
+                    <h3>
+                        Artificial intelligence continues to reshape
+                        the technology landscape
+                    </h3>
+
+                    <p>
+                        AI remains one of the most closely watched
+                        themes across technology and markets.
+                    </p>
+
+                    <div class="sv-story-bottom">
+
+                        <span>
+                            Read story
+                        </span>
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- STORY 03 -->
+            <article
+                class="sv-side-story"
+                data-category="investing">
+
+                <div class="sv-story-number">
+                    03
+                </div>
+
+                <div class="sv-story-content">
+
+                    <div class="sv-news-meta">
+
+                        <span>INVESTING</span>
+
+                        <b>—</b>
+
+                        <small>
+                            Today · 4 min
+                        </small>
+
+                    </div>
+
+                    <h3>
+                        Research and discipline remain key to building
+                        a smarter investment strategy
+                    </h3>
+
+                    <p>
+                        Investors continue to focus on diversification,
+                        risk management and long-term decisions.
+                    </p>
+
+                    <div class="sv-story-bottom">
+
+                        <span>
+                            Read story
+                        </span>
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- STORY 04 -->
+            <article
+                class="sv-side-story"
+                data-category="economy">
+
+                <div class="sv-story-number">
+                    04
+                </div>
+
+                <div class="sv-story-content">
+
+                    <div class="sv-news-meta">
+
+                        <span>ECONOMY</span>
+
+                        <b>—</b>
+
+                        <small>
+                            Today · 3 min
+                        </small>
+
+                    </div>
+
+                    <h3>
+                        Economic signals remain important for
+                        understanding market direction
+                    </h3>
+
+                    <p>
+                        Investors are closely watching economic
+                        indicators and broader market conditions.
+                    </p>
+
+                    <div class="sv-story-bottom">
+
+                        <span>
+                            Read story
+                        </span>
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         LOWER INFORMATION AREA
+    ========================== -->
+    <section class="sv-lower-news">
+
+
+        <!-- =====================
+             TRENDING STOCKS
+        ====================== -->
+        <aside class="sv-trending-section">
+
+            <div class="sv-section-heading">
+
+                <div>
+
+                    <span>MARKET WATCH</span>
+
+                    <h2>
+                        Trending
+                        <strong>Stocks</strong>
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="sv-trending-list">
+
+
+                <!-- AAPL -->
+                <div class="sv-trending-stock">
+
+                    <div class="sv-stock-rank">
+                        01
+                    </div>
+
+                    <div class="sv-stock-info">
+
+                        <strong>AAPL</strong>
+
+                        <span>
+                            Apple Inc.
+                        </span>
+
+                    </div>
+
+                    <div class="sv-stock-direction up">
+
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+
+                        <span>
+                            UP
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NVDA -->
+                <div class="sv-trending-stock">
+
+                    <div class="sv-stock-rank">
+                        02
+                    </div>
+
+                    <div class="sv-stock-info">
+
+                        <strong>NVDA</strong>
+
+                        <span>
+                            NVIDIA
+                        </span>
+
+                    </div>
+
+                    <div class="sv-stock-direction up">
+
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+
+                        <span>
+                            UP
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MSFT -->
+                <div class="sv-trending-stock">
+
+                    <div class="sv-stock-rank">
+                        03
+                    </div>
+
+                    <div class="sv-stock-info">
+
+                        <strong>MSFT</strong>
+
+                        <span>
+                            Microsoft
+                        </span>
+
+                    </div>
+
+                    <div class="sv-stock-direction up">
+
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+
+                        <span>
+                            UP
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TSLA -->
+                <div class="sv-trending-stock">
+
+                    <div class="sv-stock-rank">
+                        04
+                    </div>
+
+                    <div class="sv-stock-info">
+
+                        <strong>TSLA</strong>
+
+                        <span>
+                            Tesla Inc.
+                        </span>
+
+                    </div>
+
+                    <div class="sv-stock-direction down">
+
+                        <i class="fa-solid fa-arrow-trend-down"></i>
+
+                        <span>
+                            DOWN
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AMZN -->
+                <div class="sv-trending-stock">
+
+                    <div class="sv-stock-rank">
+                        05
+                    </div>
+
+                    <div class="sv-stock-info">
+
+                        <strong>AMZN</strong>
+
+                        <span>
+                            Amazon
+                        </span>
+
+                    </div>
+
+                    <div class="sv-stock-direction up">
+
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+
+                        <span>
+                            UP
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =====================
+             MARKET SNAPSHOT
+        ====================== -->
+        <section class="sv-market-snapshot">
+
+            <div class="sv-section-heading">
+
+                <div>
+
+                    <span>QUICK VIEW</span>
+
+                    <h2>
+                        Market
+                        <strong>Snapshot</strong>
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="sv-snapshot-grid">
+
+
+                <div class="sv-snapshot-card">
+
+                    <div class="sv-snapshot-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            S&P 500
+                        </span>
+
+                        <strong>
+                            LIVE
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="sv-snapshot-card">
+
+                    <div class="sv-snapshot-icon">
+                        <i class="fa-solid fa-chart-column"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            NASDAQ
+                        </span>
+
+                        <strong>
+                            LIVE
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="sv-snapshot-card">
+
+                    <div class="sv-snapshot-icon">
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Dow Jones
+                        </span>
+
+                        <strong>
+                            LIVE
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- INVESTOR NOTE -->
+            <div class="sv-news-note">
+
+                <div class="sv-note-icon">
+                    <i class="fa-solid fa-lightbulb"></i>
+                </div>
+
+                <div>
+
+                    <span>
+                        INVESTOR NOTE
+                    </span>
+
+                    <h3>
+                        News gives context.
+                        <strong>Data gives direction.</strong>
+                    </h3>
+
+                    <p>
+                        Combine market news with StockVision Pro
+                        charts and portfolio analytics for a broader
+                        view of the market.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+    <!-- =========================
+         NEWS CTA
+    ========================== -->
+    <section class="sv-news-cta">
+
+        <div>
+
+            <span>
+                STOCKVISION PRO
+            </span>
+
+            <h2>
+                Turn market news into
+                <strong>better decisions.</strong>
+            </h2>
+
+            <p>
+                Explore live charts, market movements and
+                portfolio analytics in one place.
+            </p>
+
+        </div>
+
+        <a href="{{ url_for('charts') }}">
+
+            Explore Charts
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </section>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="{{ url_for('static', filename='js/news.js') }}"></script>
+
+{% endblock %}

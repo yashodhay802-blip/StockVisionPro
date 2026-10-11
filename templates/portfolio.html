@@ -1,0 +1,351 @@
+```html
+{% extends "base.html" %}
+
+{% block title %}
+Portfolio | StockVision Pro
+{% endblock %}
+
+{% block content %}
+
+<div class="sv-portfolio-page">
+
+    <!-- =========================
+         PORTFOLIO HERO
+    ========================== -->
+    <section class="sv-portfolio-hero">
+
+        <div class="sv-portfolio-intro">
+
+            <div class="sv-portfolio-kicker">
+                <span></span>
+                STOCKVISION PRO / PORTFOLIO
+            </div>
+
+            <h1>
+                My <strong>Portfolio</strong>
+            </h1>
+
+            <p>
+                A clear view of your paper-trading positions,
+                portfolio value and current holdings.
+            </p>
+
+        </div>
+
+
+        <div class="sv-portfolio-overview">
+
+            <div class="sv-overview-label">
+                <i class="fa-solid fa-chart-pie"></i>
+                PORTFOLIO OVERVIEW
+            </div>
+
+            <div class="sv-overview-main">
+
+                <div>
+                    <small>PORTFOLIO VALUE</small>
+
+                    <strong>
+                        ${{ "%.2f"|format(total_value) }}
+                    </strong>
+                </div>
+
+                <div class="sv-overview-divider"></div>
+
+                <div>
+                    <small>HOLDINGS</small>
+
+                    <strong>
+                        {{ portfolio|length }}
+                    </strong>
+                </div>
+
+            </div>
+
+            <div class="sv-overview-status">
+                <span></span>
+                PAPER PORTFOLIO ACTIVE
+            </div>
+
+        </div>
+
+    </section>
+
+
+    {% if portfolio %}
+
+    <!-- =========================
+         HOLDINGS AREA
+    ========================== -->
+    <section class="sv-portfolio-main">
+
+        <div class="sv-holdings-panel">
+
+            <div class="sv-portfolio-section-head">
+
+                <div>
+                    <span>YOUR INVESTMENTS</span>
+
+                    <h2>
+                        Current <strong>Holdings</strong>
+                    </h2>
+                </div>
+
+                <a href="/paper-trading"
+                   class="sv-portfolio-action">
+
+                    <i class="fa-solid fa-plus"></i>
+                    Add Position
+
+                </a>
+
+            </div>
+
+
+            <div class="sv-portfolio-table-wrap">
+
+                <table class="sv-portfolio-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>ASSET</th>
+                            <th>QUANTITY</th>
+                            <th>PURCHASE PRICE</th>
+                            <th>POSITION VALUE</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for item in portfolio %}
+
+                        <tr>
+
+                            <td>
+
+                                <div class="sv-asset">
+
+                                    <div class="sv-asset-icon">
+                                        <i class="fa-solid fa-chart-line"></i>
+                                    </div>
+
+                                    <div>
+                                        <strong>
+                                            {{ item.symbol }}
+                                        </strong>
+
+                                        <small>
+                                            Stock Position
+                                        </small>
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                <strong class="sv-quantity">
+                                    {{ item.quantity }}
+                                </strong>
+                                <span class="sv-unit">
+                                    shares
+                                </span>
+                            </td>
+
+
+                            <td>
+                                <span class="sv-purchase-price">
+                                    ${{ "%.2f"|format(item.price) }}
+                                </span>
+                            </td>
+
+
+                            <td>
+                                <strong class="sv-position-value">
+                                    ${{ "%.2f"|format(item.quantity * item.price) }}
+                                </strong>
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PORTFOLIO SIDE PANEL
+        ========================== -->
+        <aside class="sv-portfolio-side">
+
+            <div class="sv-side-title">
+
+                <span>QUICK VIEW</span>
+
+                <h2>
+                    Portfolio <strong>Stats</strong>
+                </h2>
+
+            </div>
+
+
+            <div class="sv-stat-row">
+
+                <div class="sv-stat-icon">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+
+                <div>
+                    <small>TOTAL VALUE</small>
+                    <strong>
+                        ${{ "%.2f"|format(total_value) }}
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="sv-stat-row">
+
+                <div class="sv-stat-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+
+                <div>
+                    <small>POSITIONS</small>
+                    <strong>
+                        {{ portfolio|length }}
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="sv-stat-row">
+
+                <div class="sv-stat-icon">
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                </div>
+
+                <div>
+                    <small>TRADING MODE</small>
+                    <strong>
+                        PAPER
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="sv-portfolio-tip">
+
+                <div class="sv-tip-icon">
+                    <i class="fa-solid fa-lightbulb"></i>
+                </div>
+
+                <div>
+
+                    <span>INVESTOR NOTE</span>
+
+                    <p>
+                        Use your holdings together with
+                        market charts to understand your
+                        portfolio better.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+
+    <!-- =========================
+         BOTTOM STRIP
+    ========================== -->
+    <section class="sv-portfolio-bottom">
+
+        <div>
+
+            <span>PORTFOLIO INTELLIGENCE</span>
+
+            <h2>
+                Your positions.
+                <strong>Your strategy.</strong>
+            </h2>
+
+        </div>
+
+        <a href="/charts">
+
+            Explore Market Charts
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </section>
+
+
+    {% else %}
+
+    <!-- =========================
+         EMPTY PORTFOLIO
+    ========================== -->
+    <section class="sv-portfolio-empty">
+
+        <div class="sv-empty-visual">
+            <i class="fa-solid fa-briefcase"></i>
+        </div>
+
+        <span>PORTFOLIO / EMPTY</span>
+
+        <h2>
+            Start building your
+            <strong>portfolio.</strong>
+        </h2>
+
+        <p>
+            Your paper-trading positions will appear here
+            once you make your first trade.
+        </p>
+
+        <a href="/paper-trading"
+           class="sv-portfolio-action">
+
+            <i class="fa-solid fa-arrow-trend-up"></i>
+            Start Paper Trading
+
+        </a>
+
+    </section>
+
+    {% endif %}
+
+
+    <div class="sv-portfolio-note">
+
+        <i class="fa-solid fa-circle-info"></i>
+
+        <span>
+            Portfolio values shown here are based on
+            simulated paper-trading positions.
+        </span>
+
+    </div>
+
+</div>
+
+{% endblock %}
+```
